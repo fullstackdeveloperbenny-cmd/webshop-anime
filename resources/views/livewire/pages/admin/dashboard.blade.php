@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
-new #[Layout('components.layouts.app')] class extends Component
+new #[Layout('components.layouts.admin')] class extends Component
 {
     public function mount(): void
     {

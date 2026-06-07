@@ -14,3 +14,10 @@ Volt::route('/login', 'pages.auth.login')
 Volt::route('/register', 'pages.auth.register')
     ->middleware('guest')
     ->name('register');
+
+
+// Beveiligde Admin Routes
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+
+    Volt::route('/dashboard', 'pages.admin.dashboard')->name('dashboard');
+});
