@@ -20,7 +20,12 @@ Volt::route('/register', 'pages.auth.register')
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
 
     Volt::route('/dashboard', 'pages.admin.dashboard')->name('dashboard');
+    //Producten routes
     Volt::route('/producten', 'pages.admin.products.index')->name('products.index');
     Volt::route('/producten/nieuw', 'pages.admin.products.create')->name('products.create');
     Volt::route('/producten/{product}/bewerken', 'pages.admin.products.edit')->name('products.edit');
+    // Categorie Routes
+    Volt::route('/categorieen', 'pages.admin.categories.index')->name('categories.index');
+    Volt::route('/categorieen/nieuw', 'pages.admin.categories.create')->name('categories.create');
+    Volt::route('/categorieen/{category}/bewerken', 'pages.admin.categories.edit')->name('categories.edit');
 });
