@@ -16,9 +16,21 @@ new #[Layout('components.layouts.admin')] class extends Component
             'products' => Product::with(['category', 'variants'])->latest()->paginate(10),
         ];
     }
+
+    public function delete(Product $product): void
+    {
+        $product->delete(); // Dit activeert automatisch de Soft Delete
+        session()->flash('status', 'Product is succesvol gearchiveerd.');
+    }
 }; ?>
 
 <div>
+    @if (session('status'))
+        <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative shadow-sm" role="alert">
+            <span class="block sm:inline font-medium">{{ session('status') }}</span>
+        </div>
+    @endif
+
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold text-gray-800">Magazijn: Anime Producten</h1>
 
@@ -47,13 +59,18 @@ new #[Layout('components.layouts.admin')] class extends Component
                         {{ $product->category->name ?? 'Geen' }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            <span class="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
-                                {{ $product->variants->count() }}
-                            </span>
+                        <span class="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
+                            {{ $product->variants->count() }}
+                        </span>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3">
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Bewerk</a>
-                        <button class="text-red-600 hover:text-red-900">Verwijder</button>
+                        <a href="{{ route('admin.products.edit', $product) }}" wire:navigate class="text-indigo-600 hover:text-indigo-900 transition">Bewerk</a>
+
+                        <button wire:click="delete({{ $product->id }})"
+                                wire:confirm="Weet je zeker dat je dit product (en de varianten) naar het archief wilt verplaatsen?"
+                                class="text-red-600 hover:text-red-900 transition">
+                            Verwijder
+                        </button>
                     </td>
                 </tr>
             @empty
