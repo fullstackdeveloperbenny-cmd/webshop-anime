@@ -19,5 +19,11 @@
             Gebruikers
         </a>
 
+        <a href="{{ route('admin.categories.index') }}"
+           wire:navigate
+           class="block p-2 rounded transition {{ request()->routeIs('admin.categories.*') ? 'bg-indigo-800 font-semibold shadow-inner' : 'hover:bg-indigo-800' }}">
+            Categorieën
+        </a>
+
     </nav>
 </aside>

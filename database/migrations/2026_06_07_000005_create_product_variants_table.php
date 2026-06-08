@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('product_variants', function (Blueprint $table) {
             $table->id();
-            // Hier leggen we de fysieke link met het hoofdproduct
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->string('size');
             $table->decimal('price', 10, 2);
