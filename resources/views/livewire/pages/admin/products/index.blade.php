@@ -22,7 +22,7 @@ new #[Layout('components.layouts.admin')] class extends Component
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold text-gray-800">Magazijn: Anime Producten</h1>
 
-        <a href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md shadow-sm transition">
+        <a href="{{ route('admin.products.create') }}" wire:navigate class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md shadow-sm transition">
             + Nieuw Product
         </a>
     </div>
