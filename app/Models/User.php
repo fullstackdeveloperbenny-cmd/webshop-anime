@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\UserRole; // Deze import moet er staan!
+use App\Enums\UserRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -16,7 +16,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', // Zorg dat 'role' hier in de fillable array staat!
+        'role',
     ];
 
     protected $hidden = [
