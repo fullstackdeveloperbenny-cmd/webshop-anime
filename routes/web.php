@@ -20,4 +20,5 @@ Volt::route('/register', 'pages.auth.register')
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
 
     Volt::route('/dashboard', 'pages.admin.dashboard')->name('dashboard');
+    Volt::route('/producten', 'pages.admin.products.index')->name('products.index');
 });
